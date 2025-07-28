@@ -26,6 +26,22 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+app.get('/user', async (req, res) => {
+    const emailId = req.body.emailId;
+    try {
+       const users = await User.find({emailId: emailId});
+       if(users.length === 0) {
+        res.status(400).send("User not found")
+       }
+       else {
+        res.status(200).send(users)
+       }
+
+    }catch(err) {
+
+    }
+})
+
 app.delete('/deleteAll', async (req, res) => {
     try {
         await User.deleteMany({});
