@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
+        required:true,
         minLength: 4,
         maxLength: 15,
     },
@@ -32,7 +33,7 @@ const UserSchema = new mongoose.Schema({
     },
     dob: {
         type: Date,
-        required: true,
+        // required: true,
         validate(value) {
             if (value > new Date()) {
                 throw new Error("Date of birth cannot be in the future");
