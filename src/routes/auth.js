@@ -2,20 +2,21 @@ const express = require("express");
 const User = require("../models/user")
 const authRouter = express.Router();
 const bcrypt = require("bcrypt");
+const { validateSignupData } = require("../utils/validation");
 
 authRouter.post("/signup", async (req, res) => {
 
     try {
-        const { name, emailId, password, dob, gender } = req.body;
+        validateSignupData(req);
+        const { firstName,lastName, emailId, password } = req.body;
 
         const hassedPassword = await bcrypt.hash(password, 10);
 
         const user = new User({
-            name,
+            firstName,
+            lastName,
             emailId,
             password: hassedPassword,
-            dob,
-            gender
         })
         await user.save();
         res.status(201).json({ message: "User created successfully" });
