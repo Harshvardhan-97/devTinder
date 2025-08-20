@@ -45,6 +45,9 @@ const UserSchema = new mongoose.Schema({
             }
         }
     },
+    age: {
+        type: Number,
+    },
     gender: {
         type: String,
         enum: {
@@ -60,6 +63,9 @@ const UserSchema = new mongoose.Schema({
     about: {
         type: String,
         default: "This is default about the user"
+    },
+    photoUrl: {
+        type: String,
     },
     skills: {
         type: [String],
