@@ -66,9 +66,11 @@ const UserSchema = new mongoose.Schema({
     },
     photoUrl: {
         type: String,
+         default: ""
     },
     skills: {
         type: [String],
+         default: ""
     },
 
 }, {
